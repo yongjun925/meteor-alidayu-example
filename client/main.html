@@ -1,0 +1,140 @@
+<head>
+    <title>meteor-alidayu-example</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<h1>meteor-alidayu-example</h1>
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#">sms_send 短信发送</a></li>
+    <li role="presentation"><a href="#">sms_query 短信发送记录查询</a></li>
+    <li role="presentation"><a href="#">tts_singlecall 文本转语音通知</a></li>
+    <li role="presentation"><a href="#">voice_singlecall 语音通知</a></li>
+    <li role="presentation"><a href="#">voice_doublecall 多方通话</a></li>
+</ul>
+<ul id="content">
+    <li>{{> sms_send}}</li>
+    <li style="display: none;">{{> sms_query}}</li>
+    <li style="display: none;">{{> tts_singlecall}}</li>
+    <li style="display: none;">{{> voice_singlecall}}</li>
+    <li style="display: none;">{{> voice_doublecall}}</li>
+</ul>
+</body>
+
+<template name="sms_send">
+    <form role="form" action="/alidayu/sms_send" target="_blank">
+        <div class="form-group">
+            <label for="sms_free_sign_name">sms_free_sign_name 短信签名</label>
+            <input type="text" class="form-control" name="sms_free_sign_name" id="sms_free_sign_name">
+        </div>
+        <div class="form-group">
+            <label for="sms_param">sms_param 短信模板变量</label>
+            <input type="text" class="form-control" name="sms_param" id="sms_param">
+        </div>
+        <div class="form-group">
+            <label for="rec_num">rec_num 短信接收号码</label>
+            <input type="text" class="form-control" name="rec_num" id="rec_num">
+        </div>
+        <div class="form-group">
+            <label for="sms_template_code">sms_template_code 短信模板ID</label>
+            <input type="text" class="form-control" name="sms_template_code" id="sms_template_code">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</template>
+
+<template name="sms_query">
+    <form role="form" action="/alidayu/sms_query" target="_blank">
+        <div class="form-group">
+            <label for="rec_num">rec_num 短信接收号码</label>
+            <input type="text" class="form-control" name="rec_num" id="rec_num">
+        </div>
+        <div class="form-group">
+            <label for="query_date">query_date 短信发送日期</label>
+            <input type="text" class="form-control" name="query_date" id="query_date">
+        </div>
+        <div class="form-group">
+            <label for="current_page">current_page 分页参数,页码</label>
+            <input type="text" class="form-control" name="current_page" id="current_page">
+        </div>
+        <div class="form-group">
+            <label for="page_size">page_size 分页参数，每页数量。最大值50</label>
+            <input type="text" class="form-control" name="page_size" id="page_size">
+        </div>
+        <div class="form-group">
+            <label for="biz_id">biz_id 短信发送流水</label>
+            <input type="text" class="form-control" name="biz_id" id="biz_id">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</template>
+
+<template name="tts_singlecall">
+    <form role="form" action="/alidayu/tts_singlecall" target="_blank">
+        <div class="form-group">
+            <label for="tts_param">tts_param 文本转语音（TTS）模板变量</label>
+            <input type="text" class="form-control" name="tts_param" id="tts_param">
+        </div>
+        <div class="form-group">
+            <label for="called_num">called_num 被叫号码</label>
+            <input type="text" class="form-control" name="called_num" id="called_num">
+        </div>
+        <div class="form-group">
+            <label for="called_show_num">called_show_num 被叫号显</label>
+            <input type="text" class="form-control" name="called_show_num" id="called_show_num">
+        </div>
+        <div class="form-group">
+            <label for="tts_code">tts_code TTS模板ID</label>
+            <input type="text" class="form-control" name="tts_code" id="tts_code">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</template>
+
+<template name="voice_singlecall">
+    <form role="form" action="/alidayu/voice_singlecall" target="_blank">
+        <div class="form-group">
+            <label for="called_num">called_num 被叫号码</label>
+            <input type="text" class="form-control" name="called_num" id="called_num">
+        </div>
+        <div class="form-group">
+            <label for="called_show_num">called_show_num 被叫号显</label>
+            <input type="text" class="form-control" name="called_show_num" id="called_show_num">
+        </div>
+        <div class="form-group">
+            <label for="voice_code">voice_code 语音文件ID</label>
+            <input type="text" class="form-control" name="voice_code" id="voice_code">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</template>
+
+<template name="voice_doublecall">
+    <form role="form" action="/alidayu/voice_doublecall" target="_blank">
+        <div class="form-group">
+            <label for="caller_num">caller_num 主叫号码</label>
+            <input type="text" class="form-control" name="caller_num" id="caller_num">
+        </div>
+        <div class="form-group">
+            <label for="called_show_num">caller_show_num 被叫号显</label>
+            <input type="text" class="form-control" name="called_show_num" id="called_show_num">
+        </div>
+        <div class="form-group">
+            <label for="called_num">called_num 被叫号码</label>
+            <input type="text" class="form-control" name="called_num" id="called_num">
+        </div>
+        <div class="form-group">
+            <label for="called_show_num">called_show_num 被叫号码侧的号码显示</label>
+            <input type="text" class="form-control" name="called_show_num" id="called_show_num">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</template>
