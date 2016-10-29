@@ -9,8 +9,8 @@ function getAlidayu() {
     if (!alidayu) {
         alidayu = new Alidayu(
             {
-                appkey: '23489721',
-                appsecret: 'c1a438646d25a6a51978f6867f52b333'
+                appkey: '',
+                appsecret: ''
             }
         );
     }
